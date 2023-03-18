@@ -1,18 +1,46 @@
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import logo from '../assets/complet.svg'
+import { Input } from '../components/Input'
 import { InputButton } from '../components/InputButton'
-import { TextInput } from '../components/TextInput'
+import { services } from '../services'
 export function SignUpPage() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [name, setname] = useState("")
+    const [photoUrl, setPhotoUrl] = useState("")
+    const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
+    async function createAccount(e){
+        e.preventDefault()
+        setLoading(()=>true)
+        try{
+            let response = await services.signUp(email, name, password, photoUrl)
+            let messageObj = await response.json()
+            if (response.ok){
+                console.log(messageObj)
+                navigate('/')
+            } else {
+                alert(messageObj.message)
+            }
+
+        } catch (e){
+            console.log(e)
+        }
+        setLoading(()=>false)
+    }
     return <SignUpPageContainer>
         <img src={logo} alt="Trackit!" />
-        <Form>
-            <TextInput placeholder="email" />
-            <TextInput placeholder="senha" />
-            <TextInput placeholder="nome" />
-            <TextInput placeholder="foto" />
-            <InputButton text="Entrar" />
+        <Form onSubmit={e=>createAccount(e)}>
+            <Input disable={loading} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" required/>
+            <Input disable={loading}  type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="senha" required/>
+            <Input disable={loading}  value={name} onChange={(e) => setname(e.target.value)} placeholder="nome" required/>
+            <Input disable={loading}  value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="foto" />
+            <InputButton disable={loading}  loading={loading} text="Entrar" />
         </Form>
-        <button>Já tem uma conta? Faça login</button>
+        <Link to={'/'}><button>Já tem uma conta? Faça login</button></Link>
 
     </SignUpPageContainer>
 }
@@ -40,7 +68,7 @@ const SignUpPageContainer = styled.div`
     input, button {
         margin-top: 6px;
     }
-    & > button:last-child {
+    & > a >button:last-child {
         text-decoration: underline;
         color:#52B6FF;
         border: none;
