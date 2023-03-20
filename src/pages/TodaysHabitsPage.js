@@ -9,15 +9,15 @@ export function TodaysHabitsPage() {
     return (<>
         <TitleContainer totalPercentage={percentage}>
             <TitleBar text={todaysIntialMessage} buttonShouldRender={false} />
-            { percentage > 0 ? <p data-test="today-counter">{`${percentage}% dos hábitos concluídos`}</p> : <p  data-test="today-counter">Nenhum hábito concluído ainda</p>}
+            <p data-test="today-counter">{percentage > 0 ? `${percentage}` + "% dos hábitos concluídos": 'Nenhum hábito concluído ainda'}</p>
         </TitleContainer>
         <HabitsPageContainer>
             {todaysHabits.map(item => (
                 <Habit data-test="today-habit-container" key={item.id}>
                     <div>
                         <p data-test="today-habit-name">{item.name}</p>
-                        <p data-test="today-habit-sequence">Sequência atual: {item.currentSequence + " dias"}</p>
-                        <p data-test="today-habit-record">Seu recorde: {item.highestSequence + " dias"}</p>
+                        <p style={item.done? {color:'#8FC549'}: {color:'#666666'}}data-test="today-habit-sequence">Sequência atual: {item.currentSequence + " dias"}</p>
+                        <p style={item.currentSequence > 0  && item.highestSequence===item.currentSequence ? {color:'#8FC549'}: {color:'#666666'}} data-test="today-habit-record">Seu recorde: {item.highestSequence + " dias"}</p>
                     </div>
                     <DoneButton data-test="today-habit-check-btn" onClick={() => setHatbitAsDone(item.id)} done={item.done}><img src={done} alt={item.done ? "realizada" : "não realizada"} /></DoneButton>
                 </Habit>)

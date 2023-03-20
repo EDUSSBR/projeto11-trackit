@@ -146,7 +146,11 @@ export function TodoProvider({ children }) {
         setLoading(true)
         if (state.newHabit.name.length===0){
             alert("preencha com algum valor válido")
-            setLoading(false)
+            let newState = {...state}
+            newState.loading=false
+            newState.newHabit.openCreateHabitTab=false
+            setState(prev=> newState)
+            // setLoading(false)
             return
         }
         const formattedDays = [0, 1, 2, 3, 4, 5, 6, 7].reduce((acc, item, index) => {
@@ -177,7 +181,7 @@ export function TodoProvider({ children }) {
                   } else {
                     const json =await response.json()
                     alert(json.details[0])
-                    const newState = { ...state }
+                    const newState = { ...state, openCreateHabitTab: false }
                     newState.habitsList = newState.habitsList.filter(item => item.id !== -2)
                     setState(prev => newState)
                 }

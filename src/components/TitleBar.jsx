@@ -3,7 +3,7 @@ import styled from "styled-components"
 export function TitleBar({ text = "Meus hábitos", buttonShouldRender = true, fn }) {
     return (  
         <TitleBarContainer>
-            <Text data-test={(text === "Meus hábitos") ? "": "today"}>{text}</Text>
+            <Text data-test={(text === "Meus hábitos" || text === "Histórico") ? "": "today"}>{text}</Text>
             <Button data-test="habit-create-btn" onClick={fn}  buttonShouldRender={buttonShouldRender}>+</Button>
         </TitleBarContainer>
     )

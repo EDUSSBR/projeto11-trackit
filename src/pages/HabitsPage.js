@@ -20,8 +20,8 @@ export function HabitsPage() {
                         </DayButtonItem>))}
                 </DayButtonContainer>
                 <BottomButtonsContainer >
-                    <CancelButton data-test="habit-create-cancel-btn" loading={loading}>Cancelar</CancelButton>
-                    <InputButton  dataTest="habit-create-save-btn" loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
+                    <CancelButton data-test="habit-create-cancel-btn" disabled={loading} loading={loading}>Cancelar</CancelButton>
+                    <InputButton  dataTest="habit-create-save-btn" disabled={loading} loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
                 </BottomButtonsContainer>
             </CreateHabit>
             {habitsList?.map((item) => (
