@@ -1,16 +1,24 @@
 import styled from "styled-components"
-import trackit from "../assets/TrackIt.svg"
 import { useTodo } from "../hooks/useTodo"
 
 export function Header() {
     const { state: { user: { image } } } = useTodo()
     return (
         <HeaderContainer data-test="header">
-            <div><img src={trackit} alt="logo" /></div>
-            <img src={image} alt="profile" />
+            <Div>Trackit</Div>
+            <img data-test="header" src={image} alt="profile" />
         </HeaderContainer>)
 }
-
+const Div = styled.h1`
+background-color:inherit;
+font-family: 'Playball';
+height:49px;
+max-width: 97px;
+font-weight: 400;
+font-size: 38.982px;
+line-height: 49px;
+color: white;
+`
 const HeaderContainer = styled.header`
     position: fixed;
     width:100%;
