@@ -164,7 +164,7 @@ export function TodoProvider({ children }) {
             return acc
         }, [])
         setHabitsList({ id: -2, name: state.newHabit.name, days: formattedDays })
-        setLoading(false)
+
     }
     useEffect(() => {
         (async function updateINFO() {
@@ -178,9 +178,9 @@ export function TodoProvider({ children }) {
                     }
                 }
                 if (name === undefined || days === undefined) return
-                setLoading(true)
+
                 const response = await services.createHabit(name, days, state.user.token)
-                setLoading(false)
+
                 if (response.ok) {
                     const { id } = await response.json()
                     setHabitID(id)
@@ -191,6 +191,7 @@ export function TodoProvider({ children }) {
                     newState.habitsList = newState.habitsList.filter(item => item.id !== -2)
                     setState(prev => newState)
                 }
+                setLoading(false)
             } catch (error) {
                 console.log(error)
             }

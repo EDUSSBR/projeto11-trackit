@@ -9,7 +9,7 @@ export function TodaysHabitsPage() {
     return (<>
         <TitleContainer totalPercentage={percentage}>
             <TitleBar text={todaysIntialMessage} buttonShouldRender={false} />
-            <p data-test="today-counter">{percentage > 0 ? `${percentage}` + "% dos hábitos concluídos": 'Nenhum hábito concluído ainda'}</p>
+            <div data-test="today-counter">{percentage > 0 ? `${percentage}% dos hábitos concluídos`: 'Nenhum hábito concluído ainda'}</div>
         </TitleContainer>
         <HabitsPageContainer>
             {todaysHabits.map(item => (
@@ -34,7 +34,7 @@ align-items:center;
 justify-content:center;
 max-width: 340px;
 margin: 6px auto 0 auto;
-p:nth-child(2){
+div:nth-child(2){
     /* margin-left:18px; */
     align-self:flex-start;
     color: #BABABA;
