@@ -1,9 +1,9 @@
 import { ThreeDots } from "react-loader-spinner"
 import styled from "styled-components"
 
-export function InputButton({ text, type = 'initial', isDisabled = false, buttonShouldRender = true, dataTest = "", loading = false }) {
+export function InputButton({ text, type = 'initial', buttonShouldRender = true, dataTest = "", loading = false, fn }) {
     return (<>
-        <Button data-test={dataTest} disabled={isDisabled} buttonShouldRender={buttonShouldRender} type={type}>{loading === true ? <ThreeDots
+        <Button onClick={fn} data-test={dataTest} disabled={loading} buttonShouldRender={buttonShouldRender} type={type}>{loading === true ? <ThreeDots
             height="50"
             width="50"
             radius="9"
@@ -33,15 +33,16 @@ const buttonProperties = {
     save: {
         maxWidth: '84px',
         height: '35px',
-        fontSize: '20px',
+        fontSize: '15.976px',
         lineHeight: '20px;'
     }
 }
 
 
 const Button = styled.button`
-    display: ${({ buttonShouldRender }) => buttonShouldRender ? 'block' : 'none'};
-    position: ${({ buttonShouldRender }) => buttonShouldRender ? 'static' : 'absolute'};
+    visibility: ${({ buttonShouldRender }) => buttonShouldRender ? 'visible' : 'hidden'};
+    /* display: ${({ buttonShouldRender }) => buttonShouldRender ? 'block' : 'none'};  */
+    /* position: ${({ buttonShouldRender }) => buttonShouldRender ? 'static' : 'static'}; */
     width: 100%;
     text-align: center;
     text-justify: center;
