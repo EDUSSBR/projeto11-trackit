@@ -34,13 +34,13 @@ export function SignUpPage() {
     return <SignUpPageContainer>
         <img src={logo} alt="Trackit!" />
         <Form onSubmit={e=>createAccount(e)}>
-            <Input disable={loading} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" required/>
-            <Input disable={loading}  type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="senha" required/>
-            <Input disable={loading}  value={name} onChange={(e) => setname(e.target.value)} placeholder="nome" required/>
-            <Input disable={loading}  value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="foto" />
-            <InputButton disable={loading}  loading={loading} text="Entrar" />
+            <Input data-test="email-input" disable={loading} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" required/>
+            <Input data-test="password-input" disable={loading}  type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="senha" required/>
+            <Input data-test="user-name-input" disable={loading}  value={name} onChange={(e) => setname(e.target.value)} placeholder="nome" required/>
+            <Input data-test="user-image-input" disable={loading}  value={photoUrl} onChange={(e) => setPhotoUrl(e.target.value)} placeholder="foto" />
+            <InputButton dataTest="signup-btn" disable={loading}  loading={loading} text="Cadastrar" />
         </Form>
-        <Link to={'/'}><button>Já tem uma conta? Faça login</button></Link>
+        <Link data-test="login-link" to={'/'}><button>Já tem uma conta? Faça login</button></Link>
 
     </SignUpPageContainer>
 }
