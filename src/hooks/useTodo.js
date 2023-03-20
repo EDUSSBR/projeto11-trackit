@@ -144,6 +144,11 @@ export function TodoProvider({ children }) {
     
     async function createHabit() {
         setLoading(true)
+        if (state.newHabit.name.length===0){
+            alert("preencha com algum valor válido")
+            setLoading(false)
+            return
+        }
         const formattedDays = [0, 1, 2, 3, 4, 5, 6, 7].reduce((acc, item, index) => {
             if (state.newHabit.days[item] === true) {
                 acc.push(item)
