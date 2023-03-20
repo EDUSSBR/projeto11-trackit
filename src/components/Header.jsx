@@ -4,7 +4,7 @@ import trackit from "../assets/TrackIt.svg"
 
 export function Header({profilePhotoUrl=foto}) {
     return (
-        <HeaderContainer>
+        <HeaderContainer data-test="header">
             <img src={trackit} alt="logo" />
             <img src={profilePhotoUrl} alt="profile" />
        </HeaderContainer>)
