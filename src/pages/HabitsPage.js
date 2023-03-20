@@ -12,7 +12,7 @@ export function HabitsPage() {
         <TitleBar fn={setOpenCreateHabitTab} />
         <HabitsPageContainer>
             <CreateHabit data-test="habit-create-container" shouldRender={newHabit.openCreateHabitTab}>
-                <Input data-test="habit-name-input"  required value={newHabit.name} onChange={e => setNewHabitName(e.target.value)} placeholder={"nome do hábito"} />
+                <Input disabled={loading} data-test="habit-name-input"  required value={newHabit.name} onChange={e => setNewHabitName(e.target.value)} placeholder={"nome do hábito"} />
                 <DayButtonContainer>
                     {newHabit?.daysToRender?.map((item, index) => (
                         <DayButtonItem data-test="habit-day" key={item.name} disabled={loading} onClick={e => setNewHabitDays(index)} filled={newHabit.days[index]}>
@@ -20,7 +20,7 @@ export function HabitsPage() {
                         </DayButtonItem>))}
                 </DayButtonContainer>
                 <BottomButtonsContainer >
-                    <CancelButton data-test="habit-create-cancel-btn" >Cancelar</CancelButton>
+                    <CancelButton data-test="habit-create-cancel-btn" loading={loading}>Cancelar</CancelButton>
                     <InputButton  dataTest="habit-create-save-btn" loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
                 </BottomButtonsContainer>
             </CreateHabit>
