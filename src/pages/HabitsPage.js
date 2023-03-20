@@ -7,7 +7,7 @@ import trashIcon from "../assets/trash-icon.svg"
 import { Input } from "../components/Input"
 import { useTodo } from "../hooks/useTodo"
 export function HabitsPage() {
-    const { state: { newHabit, habitsList, loading }, deleteHabit, createHabit, setNewHabitDays, setNewHabitName, setOpenCreateHabitTab } = useTodo()
+    const { state: { newHabit, habitsList, loading }, deleteHabit,closeContainerCreateHabit, createHabit, setNewHabitDays, setNewHabitName, setOpenCreateHabitTab } = useTodo()
     return (<>
         <TitleBar fn={setOpenCreateHabitTab} />
         <HabitsPageContainer>
@@ -20,7 +20,7 @@ export function HabitsPage() {
                         </DayButtonItem>))}
                 </DayButtonContainer>
                 <BottomButtonsContainer >
-                    <CancelButton data-test="habit-create-cancel-btn" disabled={loading} loading={loading}>Cancelar</CancelButton>
+                    <CancelButton onClick={closeContainerCreateHabit} data-test="habit-create-cancel-btn" disabled={loading} loading={loading}>Cancelar</CancelButton>
                     <InputButton  dataTest="habit-create-save-btn" disabled={loading} loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
                 </BottomButtonsContainer>
             </CreateHabit>
@@ -41,7 +41,7 @@ export function HabitsPage() {
                                     }
                                 }
                             }
-                            return (<DayButtonItem  data-test="habit-day" filled={filled}>
+                            return (<DayButtonItem disabled={loading} data-test="habit-day" filled={filled}>
                                 {day}
                             </DayButtonItem>)
                         })}
@@ -70,6 +70,7 @@ const HabitsPageContainer = styled.div`
 
 function DayButtons({ arr = [], inputShouldRender, setIndex }) {
     let arrMap = [{ filled: false, text: "D" }, { filled: false, text: "S" }, { filled: false, text: "T" }, { filled: false, text: "Q" }, { filled: false, text: "Q" }, { filled: false, text: "S" }, { filled: false, text: "S" }]
+    const {state: {loading}} = useTodo()
     for (let item of arr) {
         arrMap[item].filled = true
     }
@@ -77,7 +78,7 @@ function DayButtons({ arr = [], inputShouldRender, setIndex }) {
         <DayButtonContainer inputShouldRender={inputShouldRender}>
 
             {arrMap.map((item) => (
-                <DayButtonItem onClick={setIndex} filled={item.filled}>
+                <DayButtonItem disabled={loading} onClick={setIndex} filled={item.filled}>
                     {item.text}
                 </DayButtonItem>))}
 

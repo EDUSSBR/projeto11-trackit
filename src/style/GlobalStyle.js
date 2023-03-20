@@ -21,6 +21,9 @@ const GlobalStyle = createGlobalStyle`
     a {
         text-decoration:none;
     }    
+    .CircularProgressbar-path{
+        transition: all 0.2s linear;
+    }
 
 `
 

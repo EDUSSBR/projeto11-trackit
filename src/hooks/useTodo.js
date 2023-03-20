@@ -141,7 +141,11 @@ export function TodoProvider({ children }) {
         newState.newHabit = { name: "", days: [false, false, false, false, false, false, false], openCreateHabitTab: false, daysToRender: ["D", "S", "T", "Q", "Q", "S", "S"] }
         setState(prev => newState)
     }
-    
+    function closeContainerCreateHabit(){
+        const newState = {...state}
+        newState.newHabit.openCreateHabitTab=false
+        setState(newState)
+    }
     async function createHabit() {
         setLoading(true)
         if (state.newHabit.name.length===0){
@@ -212,7 +216,7 @@ export function TodoProvider({ children }) {
         setState(prev => newState)
     }
     
-    return (<TodoContext.Provider value={{ state, setEmail, setPassword, signIn, ...{ user: state.user }, setUser, setAlreadyLogedIn, deleteHabit, setOpenCreateHabitTab, setNewHabitName, setNewHabitDays, createHabit, setHatbitAsDone }}>
+    return (<TodoContext.Provider value={{ state, setEmail, setPassword, signIn, ...{ user: state.user }, setUser, setAlreadyLogedIn, deleteHabit, closeContainerCreateHabit,setOpenCreateHabitTab, setNewHabitName, setNewHabitDays, createHabit, setHatbitAsDone }}>
         {children}
     </TodoContext.Provider>)
 }
