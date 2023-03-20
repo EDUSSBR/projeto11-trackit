@@ -3,9 +3,9 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 
 export function Shared({ children }) {
-    const { user } = useTodo()
+
     return <>
-        <Header profilePhotoUrl={user?.image}></Header>
+        <Header ></Header>
         {children}
         <Footer></Footer>
     </>

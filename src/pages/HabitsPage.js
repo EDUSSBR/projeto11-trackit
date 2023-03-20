@@ -21,7 +21,7 @@ export function HabitsPage() {
                 </DayButtonContainer>
                 <BottomButtonsContainer >
                     <CancelButton data-test="habit-create-cancel-btn" >Cancelar</CancelButton>
-                    <InputButton data-test="habit-create-save-btn"  loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
+                    <InputButton  dataTest="habit-create-save-btn" loading={loading} fn={createHabit} text={"Salvar"} type={'save'} />
                 </BottomButtonsContainer>
             </CreateHabit>
             {habitsList?.map((item) => (

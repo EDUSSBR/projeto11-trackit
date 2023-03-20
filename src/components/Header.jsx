@@ -1,13 +1,15 @@
 import styled from "styled-components"
 import foto from "../assets/foto14.jpg"
 import trackit from "../assets/TrackIt.svg"
+import { useTodo } from "../hooks/useTodo"
 
-export function Header({profilePhotoUrl=foto}) {
+export function Header() {
+    const { state: { user: { image} } } = useTodo()
     return (
         <HeaderContainer data-test="header">
             <img src={trackit} alt="logo" />
-            <img src={profilePhotoUrl} alt="profile" />
-       </HeaderContainer>)
+            <img src={image || foto} alt="profile" />
+        </HeaderContainer>)
 }
 
 const HeaderContainer = styled.header`
