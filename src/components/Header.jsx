@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import foto from "../assets/foto14.jpg"
 import trackit from "../assets/TrackIt.svg"
 import { useTodo } from "../hooks/useTodo"
 
@@ -8,7 +7,7 @@ export function Header() {
     return (
         <HeaderContainer data-test="header">
             <img src={trackit} alt="logo" />
-            <img src={image || foto} alt="profile" />
+            <img src={image} alt="profile" />
         </HeaderContainer>)
 }
 
