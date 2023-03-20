@@ -178,7 +178,9 @@ export function TodoProvider({ children }) {
                     }
                 }
                 if (name === undefined || days === undefined) return
+                setLoading(true)
                 const response = await services.createHabit(name, days, state.user.token)
+                setLoading(false)
                 if (response.ok) {
                     const { id } = await response.json()
                     setHabitID(id)
