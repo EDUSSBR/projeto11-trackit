@@ -3,10 +3,10 @@ import trackit from "../assets/TrackIt.svg"
 import { useTodo } from "../hooks/useTodo"
 
 export function Header() {
-    const { state: { user: { image} } } = useTodo()
+    const { state: { user: { image } } } = useTodo()
     return (
         <HeaderContainer data-test="header">
-            <img src={trackit} alt="logo" />
+            <div><img src={trackit} alt="logo" /></div>
             <img src={image} alt="profile" />
         </HeaderContainer>)
 }
@@ -21,9 +21,14 @@ const HeaderContainer = styled.header`
     justify-content:space-between;
     background-color: #126BA5;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
-    & img:first-child {
+    & div:first-child {
+        background-color:inherit;
         height:49px;
         max-width: 97px;
+        img {
+            width:100%;
+            height:100%;
+        }
     }
     & img:last-child {
         width:51px;
